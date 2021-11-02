@@ -25,7 +25,8 @@ class EventRegistrationController extends Controller
 
     public function cancelRegistration(Request $request) {
         $validator = Validator::make($request->all(), array(
-            'id' => 'required|integer'
+            'user_id' => 'required|exists:users,id',
+            'event_id'  =>  'required|exists:events,id',
         ));
 
         if ($validator->fails()) {
@@ -33,7 +34,10 @@ class EventRegistrationController extends Controller
         }
 
         try {
-            $registration = EventRegistration::find($request->id);
+            $registration = EventRegistration::where([
+                ['user_id', '=', $request->user_id],
+                ['event_id', '=', $request->event_id],
+            ])->first();
             $registration->activated = 0;
 
             $registration->save();
@@ -41,7 +45,7 @@ class EventRegistrationController extends Controller
             return $this->sendFormattedJsonResponse($registration, "Registration canceled successfully", 201);
 
         } catch (\Throwable $th) {
-            return $this->sendJsonErrorResponse("Sorry, there was an error during registration, please try again", $th);
+            return $this->sendJsonErrorResponse("Sorry, there was an error during canceling registration, please try again", $th);
         }
     }
 
