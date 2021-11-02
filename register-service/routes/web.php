@@ -13,14 +13,8 @@
 |
 */
 
-$router->group(['prefix' => 'auth'], function () use ($router) {
-    $router->get('/', function () use ($router) {
-        return $router->app->version();
-    });
-    $router->post('register', 'AuthController@register');
-    $router->post('login', 'AuthController@login');
+$router->group(['prefix' => 'api'], function () use ($router) {
 
-    $router->get('users', 'UserController@getAll');
-    $router->get('users/{id}', 'UserController@getSingle');
-    $router->get('profile', 'UserController@getUserProfile');
+    $router->post('register', 'RegisterController@register');
+
 });
