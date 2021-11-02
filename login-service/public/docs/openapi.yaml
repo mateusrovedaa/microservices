@@ -1,0 +1,287 @@
+openapi: 3.0.3
+info:
+    title: null
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost'
+paths:
+    /:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: 'Lumen (8.0.1) (Laravel Components ^8.0)'
+            tags:
+                - Endpoints
+            security: []
+    /api/v1/register:
+        post:
+            summary: 'Register as a new user'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    success: true
+                                    status: 201
+                                    message: 'User created successfully'
+                                    data: { name: 'Jesutomiwa Salam', email: tolak@gmail.com, updated_at: '2020-09-22T06:53:20.000000Z', created_at: '2020-09-22T06:53:20.000000Z', id: 4 }
+                                properties:
+                                    success: { type: boolean, example: true }
+                                    status: { type: integer, example: 201 }
+                                    message: { type: string, example: 'User created successfully' }
+                                    data: { type: object, example: { name: 'Jesutomiwa Salam', email: tolak@gmail.com, updated_at: '2020-09-22T06:53:20.000000Z', created_at: '2020-09-22T06:53:20.000000Z', id: 4 } }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: 'The name of the user'
+                                    example: hic
+                                email:
+                                    type: string
+                                    description: 'The email of the user'
+                                    example: id
+                                password:
+                                    type: string
+                                    description: 'The password'
+                                    example: earum
+                            required:
+                                - name
+                                - email
+                                - password
+            security: []
+    /api/v1/login:
+        post:
+            summary: 'User login endpoint, returns an instance of the user and an authentication access token'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    success: true
+                                    status: 201
+                                    message: null
+                                    data: { user: { id: 4, name: 'Jesutomiwa Salam', email: tolak@gmail.com, created_at: '2020-09-22T06:53:20.000000Z', updated_at: '2020-09-22T06:53:20.000000Z' }, access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2MDA3NTc3ODMsImV4cCI6MTYwMDc2MTM4MywibmJmIjoxNjAwNzU3NzgzLCJqdGkiOiI1b0FjTDg1MkYxN1hZTVJWIiwic3ViIjo0LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.KoKXz3W-D0EhSA71ypI34RjfqCDRhLPlQzCgj5sOKm0, token_type: bearer, expires_in: 3600 }
+                                properties:
+                                    success: { type: boolean, example: true }
+                                    status: { type: integer, example: 201 }
+                                    message: { type: 'null', example: null }
+                                    data: { type: object, example: { user: { id: 4, name: 'Jesutomiwa Salam', email: tolak@gmail.com, created_at: '2020-09-22T06:53:20.000000Z', updated_at: '2020-09-22T06:53:20.000000Z' }, access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE2MDA3NTc3ODMsImV4cCI6MTYwMDc2MTM4MywibmJmIjoxNjAwNzU3NzgzLCJqdGkiOiI1b0FjTDg1MkYxN1hZTVJWIiwic3ViIjo0LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.KoKXz3W-D0EhSA71ypI34RjfqCDRhLPlQzCgj5sOKm0, token_type: bearer, expires_in: 3600 } }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: 'The email of the user'
+                                    example: et
+                                password:
+                                    type: string
+                                    description: 'The password'
+                                    example: qui
+                            required:
+                                - email
+                                - password
+            security: []
+    /api/v1/users:
+        get:
+            summary: 'Get all users'
+            description: ''
+            parameters:
+                -
+                    in: query
+                    name: q
+                    description: 'A search query field'
+                    example: impedit
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: perPage
+                    description: 'Number of results to be returned per page. Defaults to 20'
+                    example: 7
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: page
+                    description: 'The page to be returned. Defaults to 1'
+                    example: 15
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "{\n \"success\": true,\n \"status\": 200,\n \"message\": null,\n \"data\": {\n    \"current_page\": 1,\n  \"data\": [\n      {\n          \"id\": 2,\n          \"name\": \"Adeosun Courtney\",\n          \"email\": \"courtney@court.ng\",\n          \"created_at\": \"2020-09-21T19:24:55.000000Z\",\n          \"updated_at\": \"2020-09-21T19:24:55.000000Z\"\n      },\n      {\n          \"id\": 1,\n          \"name\": \"Jesutomiwa Salam\",\n          \"email\": \"jsalam886@me.ng\",\n          \"created_at\": \"2020-09-21T18:49:02.000000Z\",\n          \"updated_at\": \"2020-09-21T18:49:02.000000Z\"\n      },\n      {\n          \"id\": 4,\n          \"name\": \"Jesutomiwa Salam\",\n          \"email\": \"tolak@gmail.com\",\n          \"created_at\": \"2020-09-22T06:53:20.000000Z\",\n          \"updated_at\": \"2020-09-22T06:53:20.000000Z\"\n      },\n      {\n          \"id\": 3,\n          \"name\": \"Mr Kola\",\n          \"email\": \"tola@yahoo.com\",\n          \"created_at\": \"2020-09-21T19:36:41.000000Z\",\n          \"updated_at\": \"2020-09-21T19:36:41.000000Z\"\n      }\n  ],\n  \"first_page_url\": \"http://localhost:8000/api/v1/users?page=1\",\n  \"from\": 1,\n  \"next_page_url\": null,\n  \"path\": \"http://localhost:8000/api/v1/users\",\n  \"per_page\": 20,\n  \"prev_page_url\": null,\n  \"to\": 4\n          }\n  }\n}"
+            tags:
+                - Endpoints
+    '/api/v1/users/{id}':
+        get:
+            summary: 'Get a single user instance'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    success: true
+                                    status: 200
+                                    message: null
+                                    data: { name: 'Jesutomiwa Salam', email: tolak@gmail.com, updated_at: '2020-09-22T06:53:20.000000Z', created_at: '2020-09-22T06:53:20.000000Z', id: 4 }
+                                properties:
+                                    success: { type: boolean, example: true }
+                                    status: { type: integer, example: 200 }
+                                    message: { type: 'null', example: null }
+                                    data: { type: object, example: { name: 'Jesutomiwa Salam', email: tolak@gmail.com, updated_at: '2020-09-22T06:53:20.000000Z', created_at: '2020-09-22T06:53:20.000000Z', id: 4 } }
+            tags:
+                - Endpoints
+    /api/v1/profile:
+        get:
+            summary: 'Get profile of current logged in user'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    success: true
+                                    status: 200
+                                    message: null
+                                    data: { name: 'Jesutomiwa Salam', email: tolak@gmail.com, updated_at: '2020-09-22T06:53:20.000000Z', created_at: '2020-09-22T06:53:20.000000Z', id: 4 }
+                                properties:
+                                    success: { type: boolean, example: true }
+                                    status: { type: integer, example: 200 }
+                                    message: { type: 'null', example: null }
+                                    data: { type: object, example: { name: 'Jesutomiwa Salam', email: tolak@gmail.com, updated_at: '2020-09-22T06:53:20.000000Z', created_at: '2020-09-22T06:53:20.000000Z', id: 4 } }
+            tags:
+                - Endpoints
