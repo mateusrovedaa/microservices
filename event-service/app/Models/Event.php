@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class EventRegistration extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class Event extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
     use Authenticatable, Authorizable, HasFactory;
 
@@ -20,15 +20,10 @@ class EventRegistration extends Model implements AuthenticatableContract, Author
      * @var array
      */
     protected $fillable = [
-        'user_id', 'event_id', 'checkin',
+        'description', 'event_date',
     ];
 
-    public function event()
-    {
-        return $this->belongsTo(Event::class);
-    }
-
-    /**
+        /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

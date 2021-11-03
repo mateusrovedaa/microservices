@@ -16,6 +16,7 @@ class CreateEventRegistration extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('description');
+            $table->date('event_date');
             $table->timestamps();
         });
 

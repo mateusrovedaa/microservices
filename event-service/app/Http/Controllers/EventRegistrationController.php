@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EventRegistration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
 class EventRegistrationController extends Controller
@@ -27,22 +28,39 @@ class EventRegistrationController extends Controller
         $validator = Validator::make($request->all(), array(
             'user_id' => 'required|exists:users,id',
             'event_id'  =>  'required|exists:events,id',
+            'date'  =>  'required|date',
         ));
 
         if ($validator->fails()) {
             return $this->sendJsonErrorResponse($validator->errors()->first(),400);
         }
 
+
         try {
+
             $registration = EventRegistration::where([
                 ['user_id', '=', $request->user_id],
                 ['event_id', '=', $request->event_id],
             ])->first();
-            $registration->activated = 0;
 
-            $registration->save();
+            $requestDate = new \DateTime($request->date);
+            $objectDate = new \DateTime($registration->event->event_date);
 
-            return $this->sendFormattedJsonResponse($registration, "Registration canceled successfully", 201);
+            if ($requestDate < $objectDate){
+
+                $timePassed = $objectDate->diff($requestDate);
+
+                if ($timePassed->days >= 2){
+
+                    $registration->activated = 0;
+
+                    $registration->save();
+
+                    return $this->sendFormattedJsonResponse($registration, "Registration canceled successfully", 201);
+                }
+            }
+
+            return $this->sendJsonErrorResponse("Sorry, it is only possible to cancel a registration up to 2 days before the event.");
 
         } catch (\Throwable $th) {
             return $this->sendJsonErrorResponse("Sorry, there was an error during canceling registration, please try again", $th);
