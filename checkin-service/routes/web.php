@@ -13,8 +13,4 @@
 |
 */
 
-$router->group(['prefix' => 'api'], function () use ($router) {
-
-    $router->post('checkin', 'CheckinController@checkin');
-
-});
+$router->post('checkin', 'CheckinController@checkin');

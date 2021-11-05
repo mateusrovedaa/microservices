@@ -13,8 +13,4 @@
 |
 */
 
-$router->group(['prefix' => 'api'], function () use ($router) {
-
-    $router->post('register', 'RegisterController@register');
-
-});
+$router->post('register', 'RegisterController@register');

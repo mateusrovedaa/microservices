@@ -13,10 +13,9 @@
 |
 */
 
-$router->group(['prefix' => 'api'], function () use ($router) {
+$router->post('registration', 'EventRegistrationController@registration');
+$router->post('cancelregistration', 'EventRegistrationController@cancelRegistration');
+$router->get('inscriptions', 'EventRegistrationController@getAll');
+$router->get('inscriptions/{id}', 'EventRegistrationController@getSingle');
 
-    $router->post('registration', 'EventRegistrationController@registration');
-    $router->post('cancelregistration', 'EventRegistrationController@cancelRegistration');
-    $router->get('inscriptions', 'EventRegistrationController@getAll');
 
-});
