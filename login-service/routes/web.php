@@ -13,8 +13,5 @@
 |
 */
 
-$router->group(['prefix' => 'api'], function () use ($router) {
+$router->post('login', 'AuthController@login');
 
-    $router->post('login', 'AuthController@login');
-
-});

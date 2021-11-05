@@ -19,6 +19,16 @@ class EventRegistrationController extends Controller
         //
     }
 
+    public function getSingle($id) {
+        $registration = EventRegistration::where([
+            ['user_id', '=', $id],
+            ['activated', '=', 1],
+        ])->get();
+
+        return $this->sendFormattedJsonResponse($registration);
+    }
+
+
     public function getAll() {
         $registration = EventRegistration::where('activated', 1)->get();
         return $this->sendFormattedJsonResponse($registration);
