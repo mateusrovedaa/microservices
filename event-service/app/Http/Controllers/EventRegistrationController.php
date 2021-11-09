@@ -36,7 +36,7 @@ class EventRegistrationController extends Controller
 
     public function cancelRegistration(Request $request) {
         $validator = Validator::make($request->all(), array(
-            'user_id' => 'required|exists:users,id',
+            'user_email' => 'required|exists:users,email',
             'event_id'  =>  'required|exists:events,id',
             'date'  =>  'required|date',
         ));
@@ -49,7 +49,7 @@ class EventRegistrationController extends Controller
         try {
 
             $registration = EventRegistration::where([
-                ['user_id', '=', $request->user_id],
+                ['user_email', '=', $request->user_email],
                 ['event_id', '=', $request->event_id],
             ])->first();
 
@@ -79,7 +79,7 @@ class EventRegistrationController extends Controller
 
     public function registration(Request $request) {
         $validator = Validator::make($request->all(), array(
-            'user_id' => 'required|exists:users,id',
+            'user_email' => 'required|exists:users,email',
             'event_id'  =>  'required|exists:events,id',
             'checkin' => 'required|boolean'
         ));
@@ -91,8 +91,9 @@ class EventRegistrationController extends Controller
         try {
 
             $registration = new EventRegistration;
-            $registration->user_id = $request->user_id;
+            $registration->user_email = $request->user_email;
             $registration->event_id = $request->event_id;
+            $registration->certificate = "";
             $registration->activated = 1;
             $registration->email_sent = 0;
             $registration->checkin = $request->checkin;

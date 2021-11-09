@@ -21,7 +21,7 @@ class CheckinController extends Controller
 
     public function checkin(Request $request) {
         $validator = Validator::make($request->all(), array(
-            'user_id' => 'required|exists:users,id',
+            'user_email' => 'required|exists:users,email',
             'event_id'  =>  'required|exists:events,id',
         ));
 
@@ -32,14 +32,14 @@ class CheckinController extends Controller
             $checkin = DB::table('event_registrations')
                                 ->where([
                                     ['activated', '=', '1'],
-                                    ['user_id', '=', $request->user_id],
+                                    ['user_email', '=', $request->user_email],
                                     ['event_id', '=', $request->event_id],
                                 ])
                                 ->update(['checkin' => 1]);
             $checkinget = DB::table('event_registrations')
                                 ->where([
                                     ['activated', '=', '1'],
-                                    ['user_id', '=', $request->user_id],
+                                    ['user_email', '=', $request->user_email],
                                     ['event_id', '=', $request->event_id],
                                 ])->get();
 

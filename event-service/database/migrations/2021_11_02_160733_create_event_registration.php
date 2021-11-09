@@ -25,8 +25,9 @@ class CreateEventRegistration extends Migration
             $table->boolean('checkin');
             $table->boolean('activated');
             $table->boolean('email_sent');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('certificate');
+            $table->string('user_email');
+            $table->foreign('user_email')->references('email')->on('users');
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();

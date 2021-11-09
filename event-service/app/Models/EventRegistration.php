@@ -20,7 +20,7 @@ class EventRegistration extends Model implements AuthenticatableContract, Author
      * @var array
      */
     protected $fillable = [
-        'user_id', 'event_id', 'checkin',
+        'user_email', 'event_id', 'checkin',
     ];
 
     public function event()
