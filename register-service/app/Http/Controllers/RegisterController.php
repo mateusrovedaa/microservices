@@ -61,7 +61,7 @@ class RegisterController extends Controller
             return $this->sendFormattedJsonResponse($user, "User created successfully", 201);
 
         } catch (\Throwable $th) {
-            return $this->sendJsonErrorResponse("Sorry, there was an error during registration, please try again");
+            return $this->sendJsonErrorResponse("Sorry, there was an error during registration, please try again", 400);
         }
     }
 

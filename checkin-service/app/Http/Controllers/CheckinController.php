@@ -36,18 +36,12 @@ class CheckinController extends Controller
                                     ['event_id', '=', $request->event_id],
                                 ])
                                 ->update(['checkin' => 1]);
-            $checkinget = DB::table('event_registrations')
-                                ->where([
-                                    ['activated', '=', '1'],
-                                    ['user_email', '=', $request->user_email],
-                                    ['event_id', '=', $request->event_id],
-                                ])->get();
 
             if ($checkin == 1){
                 return $this->sendFormattedJsonResponse($checkin, "Checkin successfully", 201);
             }
             else {
-                return $this->sendJsonErrorResponse("Sorry, there was an error during checkin. User user is not registered for the event or has already checked in");
+                return $this->sendJsonErrorResponse("Sorry, there was an error during checkin. User user is not registered for the event or has already checked in", 400);
             }
 
     }
