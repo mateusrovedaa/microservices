@@ -21,5 +21,9 @@ return [
     'event' => [
         'base_uri' => env('EVENT_SERVICE_BASE_URI'),
         'secret' => env('EVENT_SERVICE_SECRET'),
+    ],
+    'certificate' => [
+        'base_uri' => env('CERTIFICATE_SERVICE_BASE_URI'),
+        'secret' => env('CERTIFICATE_SERVICE_SECRET'),
     ]
 ];

@@ -36,3 +36,7 @@ $router->group(['prefix' => 'event'], function () use ($router) {
     $router->post('/registration', ['uses' => 'EventController@registration']);
     $router->post('/cancelregistration', ['uses' => 'EventController@cancelregistration']);
 });
+$router->group(['prefix' => 'certificate'], function () use ($router) {
+    $router->post('/certificate', ['uses' => 'CertificateController@generateCertificate']);
+    $router->get('/validate/{certificate}', ['uses' => 'CertificateController@validateCertificate']);
+});

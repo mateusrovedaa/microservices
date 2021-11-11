@@ -73,7 +73,7 @@ class EventRegistrationController extends Controller
             return $this->sendJsonErrorResponse("Sorry, it is only possible to cancel a registration up to 2 days before the event.");
 
         } catch (\Throwable $th) {
-            return $this->sendJsonErrorResponse("Sorry, there was an error during canceling registration, please try again", $th);
+            return $this->sendJsonErrorResponse("Sorry, there was an error during canceling registration, please try again", 400);
         }
     }
 
@@ -103,7 +103,7 @@ class EventRegistrationController extends Controller
             return $this->sendFormattedJsonResponse($registration, "Registration successfully", 201);
 
         } catch (\Throwable $th) {
-            return $this->sendJsonErrorResponse("Sorry, there was an error during registration, please try again", $th);
+            return $this->sendJsonErrorResponse("Sorry, there was an error during registration, please try again", 400);
         }
     }
 
