@@ -13,7 +13,6 @@ class CertificateController extends Controller
     public function __construct(CertificateService $certificateService)
     {
         $this->certificateService = $certificateService;
-        return $this->middleware('auth');
     }
 
     public function generateCertificate(Request $request)
