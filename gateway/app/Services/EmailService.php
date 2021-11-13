@@ -19,6 +19,6 @@ class EmailService
 
     public function sendEmail($data)
     {
-        return $this->request('POST', '/send/email', $data);
+        return $this->request('POST', '/api/v1/send/email', $data);
     }
 }

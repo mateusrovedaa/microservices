@@ -20,9 +20,9 @@ class EventRegistrationController extends Controller
         //
     }
 
-    public function getSingle($id) {
+    public function getSingle($email) {
         $registration = EventRegistration::where([
-            ['user_id', '=', $id],
+            ['user_email', '=', $email],
             ['activated', '=', 1],
         ])->get();
 

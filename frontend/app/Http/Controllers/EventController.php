@@ -20,9 +20,9 @@ class EventController extends Controller
 
     public function events(Request $request)
     {
-            $events = $this->gatewayService->getEvents($request->all());
-            $jsonevents = json_decode($events, true);
-            return view('events.list-events', compact('jsonevents'));
+        $events = $this->gatewayService->getEvents($request->all());
+        $jsonevents = json_decode($events, true);
+        return view('events.list-events', compact('jsonevents'));
     }
 
     public function getSingleEvent($id)
@@ -41,6 +41,7 @@ class EventController extends Controller
     {
         try {
             $this->gatewayService->inscription($request->all());
+            app(\App\Http\Controllers\EmailController::class)->send(Session::get('email'),'Inscription success!','Inscription in event success!');
             return redirect()->route('list-events')->with('status', 'Inscription success!');
 
         } catch (Exception $e){
@@ -62,6 +63,7 @@ class EventController extends Controller
     {
         try {
             $this->gatewayService->cancelInscription($request->all());
+            app(\App\Http\Controllers\EmailController::class)->send(Session::get('email'),'Inscription canceled!','Inscription canceled!');
             return redirect()->route('list-inscriptions')->with('status', 'Inscription canceled!');
 
         } catch (Exception $e){

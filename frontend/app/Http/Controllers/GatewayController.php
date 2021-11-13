@@ -35,15 +35,15 @@ class GatewayController extends Controller
 
     public function logout(Request $request)
     {
-            $request->session()->flush();
-            //$value = $request->session()->get('token');
-            return redirect()->route('login');
+        $request->session()->flush();
+        return redirect()->route('login');
     }
 
     public function register(Request $request)
     {
         try {
             $this->gatewayService->register($request->all());
+            app(\App\Http\Controllers\EmailController::class)->send($request->email,'Account created','Account created');
             return redirect()->route('login')->with('status', 'User created!');
 
         } catch (Exception $e){
