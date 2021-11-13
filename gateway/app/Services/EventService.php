@@ -29,10 +29,15 @@ class EventService
 
     public function getEvents()
     {
+        return $this->request('GET', '/events');
+    }
+
+    public function getInscriptions()
+    {
         return $this->request('GET', '/inscriptions');
     }
 
-    public function getSingleEvents($id)
+    public function getSingleInscription($id)
     {
         return $this->request('GET', "/inscriptions/{$id}");
     }

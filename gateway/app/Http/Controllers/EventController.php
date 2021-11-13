@@ -31,9 +31,14 @@ class EventController extends Controller
         return $this->successResponse($this->eventService->getEvents());
     }
 
-    public function getSingle($id)
+    public function getInscriptions()
     {
-        return $this->successResponse($this->eventService->getSingleEvents($id));
+        return $this->successResponse($this->eventService->getInscriptions());
+    }
+
+    public function getSingleInscription($id)
+    {
+        return $this->successResponse($this->eventService->getSingleInscription($id));
     }
 
 }
