@@ -17,7 +17,6 @@ class CreateEventRegistration extends Migration
             $table->id();
             $table->string('description');
             $table->date('event_date');
-            $table->timestamps();
         });
 
         Schema::create('event_registrations', function (Blueprint $table) {
@@ -31,6 +30,7 @@ class CreateEventRegistration extends Migration
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
+            $table->unique(['user_email', 'event_id']);
         });
     }
 

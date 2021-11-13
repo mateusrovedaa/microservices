@@ -26,4 +26,11 @@ Route::get('/register', function () {
     return view('auth/register');
 });
 Route::post('/register', [App\Http\Controllers\GatewayController::class, 'register'])->name('register');
+Route::post('/logout', [App\Http\Controllers\GatewayController::class, 'logout'])->name('logout');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/list-events', [App\Http\Controllers\GatewayController::class, 'events'])->name('list-events');
+Route::get('/inscription/{id}', [App\Http\Controllers\GatewayController::class, 'getSingleEvent'])->name('inscription');
+Route::post('/inscription', [App\Http\Controllers\GatewayController::class, 'inscription'])->name('inscription');
 

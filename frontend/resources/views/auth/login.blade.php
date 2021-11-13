@@ -11,9 +11,14 @@
                         {{ implode('', $errors->all(':message')) }}
                     </div>
                 @endif
-                @if (session('status'))
+                @if(session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
+                    </div>
+                @endif
+                @if (session('token'))
+                    <div class="alert alert-success">
+                        Você já está logado!
                     </div>
                 @endif
                 <div class="card-body">

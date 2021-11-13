@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Traits\RequestService;
-
+use Illuminate\Support\Facades\Session;
 class GatewayService
 {
     use RequestService;
@@ -25,5 +25,24 @@ class GatewayService
     public function register($data)
     {
         return $this->request('POST', '/register', $data);
+    }
+
+    public function getEvents($data)
+    {
+        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
+        return $this->request('GET', '/event/', $data, $headers);
+    }
+
+    public function getSingleEvent($id)
+    {
+        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
+        return $this->requestGet('GET', "/event/{$id}", $headers);
+    }
+
+    public function inscription($data)
+    {
+        // dd($data);
+        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
+        return $this->request('POST', '/event/registration', $data, $headers);
     }
 }
