@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventRegistration;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
@@ -32,6 +33,11 @@ class EventRegistrationController extends Controller
     public function getAll() {
         $registration = EventRegistration::where('activated', 1)->get();
         return $this->sendFormattedJsonResponse($registration);
+    }
+
+    public function getAllEvents() {
+        $events = Event::all();
+        return $this->sendFormattedJsonResponse($events);
     }
 
     public function cancelRegistration(Request $request) {
