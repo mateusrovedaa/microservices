@@ -34,6 +34,7 @@ $router->group(['prefix' => 'event'], function () use ($router) {
     $router->get('/inscriptions', ['uses' => 'EventController@getInscriptions']);
     $router->get('/inscriptions/{id}', ['uses' => 'EventController@getSingleInscription']);
     $router->get('/', ['uses' => 'EventController@index']);
+    $router->get('/{id}', ['uses' => 'EventController@getSingleEvent']);
     $router->post('/registration', ['uses' => 'EventController@registration']);
     $router->post('/cancelregistration', ['uses' => 'EventController@cancelregistration']);
 });

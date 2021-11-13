@@ -35,6 +35,14 @@ class EventRegistrationController extends Controller
         return $this->sendFormattedJsonResponse($registration);
     }
 
+    public function getSingleEvent($id) {
+        $registration = Event::where([
+            ['id', '=', $id],
+        ])->get();
+
+        return $this->sendFormattedJsonResponse($registration);
+    }
+
     public function getAllEvents() {
         $events = Event::all();
         return $this->sendFormattedJsonResponse($events);

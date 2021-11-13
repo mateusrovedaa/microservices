@@ -18,5 +18,6 @@ $router->post('cancelregistration', 'EventRegistrationController@cancelRegistrat
 $router->get('inscriptions', 'EventRegistrationController@getAll');
 $router->get('inscriptions/{id}', 'EventRegistrationController@getSingle');
 $router->get('events', 'EventRegistrationController@getAllEvents');
+$router->get('event', 'EventRegistrationController@getSingleEvent');
 
 
