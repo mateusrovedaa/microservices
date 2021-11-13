@@ -41,8 +41,19 @@ class GatewayService
 
     public function inscription($data)
     {
-        // dd($data);
         $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
         return $this->request('POST', '/event/registration', $data, $headers);
+    }
+
+    public function getInscriptions($data)
+    {
+        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
+        return $this->request('GET', '/event/inscriptions', $data, $headers);
+    }
+
+    public function cancelInscription($data)
+    {
+        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
+        return $this->request('POST', '/event/cancelregistration', $data, $headers);
     }
 }

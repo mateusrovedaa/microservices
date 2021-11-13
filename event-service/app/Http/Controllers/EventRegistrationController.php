@@ -84,7 +84,7 @@ class EventRegistrationController extends Controller
                 }
             }
 
-            return $this->sendJsonErrorResponse("Sorry, it is only possible to cancel a registration up to 2 days before the event.");
+            return $this->sendJsonErrorResponse("Sorry, it is only possible to cancel a registration up to 2 days before the event", 403);
 
         } catch (\Throwable $th) {
             return $this->sendJsonErrorResponse("Sorry, there was an error during canceling registration, please try again", 400);
