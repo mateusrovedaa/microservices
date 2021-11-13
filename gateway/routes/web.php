@@ -32,7 +32,7 @@ $router->group(['prefix' => 'email'], function () use ($router) {
 });
 $router->group(['prefix' => 'event'], function () use ($router) {
     $router->get('/inscriptions', ['uses' => 'EventController@getInscriptions']);
-    $router->get('/inscriptions/{id}', ['uses' => 'EventController@getSingleInscription']);
+    $router->post('/inscriptions', ['uses' => 'EventController@getSingleInscription']);
     $router->get('/', ['uses' => 'EventController@index']);
     $router->get('/{id}', ['uses' => 'EventController@getSingleEvent']);
     $router->post('/registration', ['uses' => 'EventController@registration']);

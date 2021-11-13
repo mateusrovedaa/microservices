@@ -20,9 +20,17 @@ class EventRegistrationController extends Controller
         //
     }
 
-    public function getSingle($email) {
+    public function getSingle(Request $request) {
+        $validator = Validator::make($request->all(), array(
+            'user_email' => 'required|exists:users,email',
+        ));
+
+        if ($validator->fails()) {
+            return $this->sendJsonErrorResponse($validator->errors()->first(),400);
+        }
+
         $registration = EventRegistration::where([
-            ['user_email', '=', $email],
+            ['user_email', '=', $request->user_email],
             ['activated', '=', 1],
         ])->get();
 

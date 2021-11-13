@@ -42,8 +42,8 @@ class EventService
         return $this->request('GET', '/inscriptions');
     }
 
-    public function getSingleInscription($email)
+    public function getSingleInscription($data)
     {
-        return $this->request('GET', "/inscriptions/{$email}");
+        return $this->request('POST', '/inscriptions', $data);
     }
 }
