@@ -45,11 +45,13 @@ class GatewayService
         return $this->request('POST', '/event/registration', $data, $headers);
     }
 
-    public function getInscriptions()
+    public function getInscriptions($data)
     {
         $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
-        $email = Session::get('email');
-        return $this->requestGet('GET', "/event/inscriptions/{$email}", $headers);
+        $data = [
+            'user_email' => Session::get('email')
+        ];
+        return $this->request('POST', "/event/inscriptions", $data, $headers);
     }
 
     public function cancelInscription($data)

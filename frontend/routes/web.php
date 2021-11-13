@@ -32,6 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/list-events', [App\Http\Controllers\EventController::class, 'events'])->name('list-events');
 Route::get('/inscription/{id}', [App\Http\Controllers\EventController::class, 'getSingleEvent'])->name('inscription');
+
 Route::post('/inscription', [App\Http\Controllers\EventController::class, 'inscription'])->name('inscription');
 Route::get('/list-inscriptions', [App\Http\Controllers\EventController::class, 'listInscriptions'])->name('list-inscriptions');
 Route::post('/cancelinscription', [App\Http\Controllers\EventController::class, 'cancelInscription'])->name('cancel-inscription');

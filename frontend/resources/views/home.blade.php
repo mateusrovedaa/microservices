@@ -16,10 +16,11 @@
 
                     <a href="/list-events"><button class="btn btn-secondary">Events</button></a>
 
-                    <a href="/list-inscriptions"><button class="btn btn-secondary">My incriptions</button></a>
+                    <a href="/list-inscriptions"><button class="btn btn-secondary">My inscriptions</button></a>
 
                     <a href="/list-entriestypes"><button class="btn btn-secondary">My data</button></a>
                 </div>
+
             </div>
         </div>
     </div>
