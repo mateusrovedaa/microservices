@@ -44,3 +44,6 @@ $router->group(['prefix' => 'certificate'], function () use ($router) {
     });
     $router->get('/validate/{certificate}', ['uses' => 'CertificateController@validateCertificate']);
 });
+$router->group(['prefix' => 'users'], function () use ($router) {
+    $router->get('/', ['uses' => 'UserController@index']);
+});

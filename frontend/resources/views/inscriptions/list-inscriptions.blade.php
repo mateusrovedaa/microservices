@@ -24,6 +24,7 @@
                                 <tr>
                                     <th>Description</th>
                                     <th>Date</th>
+                                    <th>Checkin</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -44,6 +45,13 @@
                                     @if($event['id'] === $inscription['event_id'])
                                         <td>{{ $event['description'] }}</td>
                                         <td>{{ $event['event_date'] }}</td>
+                                        <td>
+                                            @if($inscription['checkin'])
+                                                Yes
+                                            @else
+                                                No
+                                            @endif
+                                        </td>
                                         <td>
                                             <form method="POST" action="/cancelinscription">
                                                 @csrf
