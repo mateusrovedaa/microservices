@@ -6,3 +6,4 @@ docker run --rm -p 127.0.0.1:8300:8000 -d --network db_app --name login login-se
 docker run --rm -p 127.0.0.1:8400:8000 -d --network db_app --name checkin checkin-service
 docker run --rm -p 127.0.0.1:8500:8000 -d --network db_app --name event event-service
 docker run --rm -p 127.0.0.1:8600:8000 -d --network db_app --name email email-service
+docker run --rm -p 80:8181 -d --network db_app --name frontend frontend
