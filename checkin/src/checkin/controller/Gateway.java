@@ -40,6 +40,22 @@ public class Gateway {
         return data;
     }
 
+    public JSONArray getAllUsers() {
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("Authorization", "OAuth " + getAccessToken());
+        JSONObject res = this.gateway.get("/users/", headers);
+        JSONArray data = (JSONArray) res.get("data");
+        return data;
+    }
+
+    public JSONArray getAllInscriptions() {
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("Authorization", "OAuth " + getAccessToken());
+        JSONObject res = this.gateway.get("/event/inscriptions", headers);
+        JSONArray data = (JSONArray) res.get("data");
+        return data;
+    }
+
     public String checkin(String email, String event) {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Authorization", "OAuth " + getAccessToken());

@@ -24,17 +24,12 @@ public class ConexaoBD {
             String dbuser = prop.getProperty("db.user");
             String dbsenha = prop.getProperty("db.senha");
 
-            //String user = Base64.getEncoder().encodeToString(textoOriginal.getBytes());
-
-            String senha = new String(Base64.getDecoder().decode(dbsenha));
-            String user = new String(Base64.getDecoder().decode(dbuser));
-
             // Carrega Driver do Banco de Dados
             Class.forName(dbdriver);
 
             if (dbuser.length() != 0) // conexão COM usuário e senha
             {
-                conexao = DriverManager.getConnection(dburl, user, senha);
+                conexao = DriverManager.getConnection(dburl, dbuser, dbsenha);
             } else // conexão SEM usuário e senha
             {
                 conexao = DriverManager.getConnection(dburl);

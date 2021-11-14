@@ -4,13 +4,10 @@
  */
 package checkin;
 
+import apoio.ConexaoBD;
 import checkin.controller.Gateway;
-import apoio.HttpUtil;
 import checkin.view.FrmLogin;
 import java.io.IOException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -22,7 +19,7 @@ public class Checkin {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-
+        ConexaoBD.getInstance().getConnection();
         Gateway gateway = new Gateway();
         FrmLogin login = new FrmLogin(gateway);
         login.setVisible(true);

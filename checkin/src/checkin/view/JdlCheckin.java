@@ -7,6 +7,7 @@ package checkin.view;
 
 import apoio.Mensagem;
 import checkin.controller.Gateway;
+import checkin.controller.Sync;
 import javax.swing.JOptionPane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -144,7 +145,29 @@ public class JdlCheckin extends javax.swing.JDialog {
 
     private void btnGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarActionPerformed
         if (cbxOffline.isSelected()) {
-
+            Sync sync = new Sync();
+            if (sync.findInscription(tfdEmail.getText(), Integer.parseInt(tfdEvent.getText()))) {
+                boolean checkin = sync.checkin(tfdEmail.getText(), Integer.parseInt(tfdEvent.getText()));
+                if (checkin) {
+                    Mensagem.informacao("Checkin successfully.", this);
+                } else {
+                    Mensagem.informacao("Checkin unrealized.", this);
+                }
+            } else {
+                if (sync.findUser(tfdEmail.getText())) {
+                    sync.saveInscriptions(1, 1, 0, "", tfdEmail.getText(), Integer.parseInt(tfdEvent.getText()), 0);
+                    boolean checkin = sync.checkin(tfdEmail.getText(), Integer.parseInt(tfdEvent.getText()));
+                    if (checkin) {
+                        Mensagem.informacao("Checkin successfully.", this);
+                    } else {
+                        Mensagem.informacao("Checkin unrealized.", this);
+                    }
+                } else {
+                    sync.saveUsers(tfdEmail.getText(), tfdEmail.getText(), 0);
+                    sync.saveInscriptions(1, 1, 0, "", tfdEmail.getText(), Integer.parseInt(tfdEvent.getText()), 0);
+                    Mensagem.informacao("User created and checkin successfully.", this);
+                }
+            }
         } else {
             String status = this.gateway.checkin(tfdEmail.getText(), tfdEvent.getText());
             if (status.equals("true")) {
@@ -154,7 +177,6 @@ public class JdlCheckin extends javax.swing.JDialog {
                 if (statusregistration.equals("false")) {
                     int choise = Mensagem.confirmacao("User doesn't exists, want to create?", this);
                     if (choise == 0) {
-                        System.out.println("Entrei aqui");
                         String statususercreating = this.gateway.createUser(tfdEmail.getText());
                         if (statususercreating.equals("true")) {
                             String statusregistrationtwo = this.gateway.registration(tfdEmail.getText(), tfdEvent.getText());
