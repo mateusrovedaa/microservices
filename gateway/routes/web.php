@@ -49,6 +49,7 @@ $router->group(['prefix' => 'certificate'], function () use ($router) {
 $router->group(['prefix' => 'users'], function () use ($router) {
     $router->group(['middleware' => ['auth']], function () use ($router) {
         $router->get('/', ['uses' => 'UserController@index']);
+        $router->post('/update', ['uses' => 'UserController@update']);
     });
     $router->post('/single', ['uses' => 'UserController@getSingle']);
 });

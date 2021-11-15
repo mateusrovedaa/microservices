@@ -26,4 +26,9 @@ class UserController extends Controller
         return $this->successResponse($this->userService->getSingle($request->all()));
     }
 
+    public function update(Request $request)
+    {
+        return $this->successResponse($this->userService->update($request->all()));
+    }
+
 }

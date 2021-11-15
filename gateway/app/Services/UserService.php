@@ -27,4 +27,9 @@ class UserService
         return $this->request('POST', '/user', $data);
     }
 
+    public function update($data)
+    {
+        return $this->request('POST', '/user/update', $data);
+    }
+
 }

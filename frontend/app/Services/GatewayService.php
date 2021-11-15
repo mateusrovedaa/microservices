@@ -35,7 +35,7 @@ class GatewayService
 
     public function getSingleEvent($id)
     {
-        return $this->requestGet('GET', "/event/{$id}", $headers);
+        return $this->requestGet('GET', "/event/{$id}");
     }
 
     public function inscription($data)

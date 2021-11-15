@@ -34,10 +34,33 @@ class UserController extends Controller
         }
 
         $user = User::where([
-            ['email', '=', $request->email],
-        ])->get();
+                    ['email', '=', $request->email],
+                ])->get();
 
         return $this->sendFormattedJsonResponse($user);
+    }
+
+    public function update(Request $request) {
+        $validator = Validator::make($request->all(), array(
+            'email' => 'required|exists:users,email',
+            'name'  =>  'required',
+        ));
+
+        if ($validator->fails()) {
+            return $this->sendJsonErrorResponse($validator->errors()->first(),400);
+        }
+
+            $update = User::where([
+                            ['email', '=', $request->email],
+                        ])
+                        ->update(['name' => $request->name]);
+
+            if ($update == 1){
+                return $this->sendFormattedJsonResponse($update, "User updated", 201);
+            }
+            else {
+                return $this->sendJsonErrorResponse("Sorry, there was an error during update user.", 400);
+            }
     }
 
 }

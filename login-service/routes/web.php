@@ -16,4 +16,5 @@
 $router->post('login', 'AuthController@login');
 $router->get('users', 'UserController@getAll');
 $router->post('user', 'UserController@getSingle');
+$router->post('user/update', 'UserController@update');
 
