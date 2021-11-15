@@ -83,4 +83,10 @@ class GatewayService
         ];
         return $this->request('POST', "/users/single", $data);
     }
+
+    public function updateUser($data)
+    {
+        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
+        return $this->request('POST', '/users/update', $data, $headers);
+    }
 }
