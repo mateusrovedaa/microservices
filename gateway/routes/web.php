@@ -31,12 +31,14 @@ $router->group(['prefix' => 'email'], function () use ($router) {
     $router->post('/', ['uses' => 'EmailController@store']);
 });
 $router->group(['prefix' => 'event'], function () use ($router) {
-    $router->get('/inscriptions', ['uses' => 'EventController@getInscriptions']);
-    $router->post('/inscriptions', ['uses' => 'EventController@getSingleInscription']);
-    $router->get('/', ['uses' => 'EventController@index']);
+    $router->group(['middleware' => ['auth']], function () use ($router) {
+        $router->get('/inscriptions', ['uses' => 'EventController@getInscriptions']);
+        $router->post('/inscriptions', ['uses' => 'EventController@getSingleInscription']);
+        $router->get('/', ['uses' => 'EventController@index']);
+        $router->post('/registration', ['uses' => 'EventController@registration']);
+        $router->post('/cancelregistration', ['uses' => 'EventController@cancelregistration']);
+    });
     $router->get('/{id}', ['uses' => 'EventController@getSingleEvent']);
-    $router->post('/registration', ['uses' => 'EventController@registration']);
-    $router->post('/cancelregistration', ['uses' => 'EventController@cancelregistration']);
 });
 $router->group(['prefix' => 'certificate'], function () use ($router) {
     $router->group(['middleware' => ['auth']], function () use ($router) {

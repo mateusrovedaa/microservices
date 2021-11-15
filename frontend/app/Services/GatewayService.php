@@ -35,7 +35,6 @@ class GatewayService
 
     public function getSingleEvent($id)
     {
-        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
         return $this->requestGet('GET', "/event/{$id}", $headers);
     }
 
