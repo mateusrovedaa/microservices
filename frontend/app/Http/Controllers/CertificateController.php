@@ -24,8 +24,9 @@ class CertificateController extends Controller
             $jsoncertificate = json_decode($certificate, true);
             $event = $this->gatewayService->getSingleEvent($jsoncertificate['data']['event_id']);
             $jsonevent = json_decode($event, true);
-            //$user = $this->gatewayService->getEvents($request->all());
-            return view('events.certificate', compact('jsoncertificate', 'jsonevent'));
+            $user = $this->gatewayService->getUser($jsoncertificate['data']['user_email']);
+            $jsonuser = json_decode($user, true);
+            return view('events.certificate', compact('jsoncertificate', 'jsonevent', 'jsonuser'));
 
         } catch (Exception $e){
             return view('events.certificate');

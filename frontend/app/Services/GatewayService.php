@@ -76,4 +76,12 @@ class GatewayService
     {
         return $this->request('GET', "/certificate/validate/{$id}");
     }
+
+    public function getUser($email)
+    {
+        $data = [
+            'email' => $email
+        ];
+        return $this->request('POST', "/users/single", $data);
+    }
 }

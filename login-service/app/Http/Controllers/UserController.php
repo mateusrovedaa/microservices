@@ -34,7 +34,7 @@ class UserController extends Controller
         }
 
         $user = User::where([
-            ['email', '=', $request->user_email],
+            ['email', '=', $request->email],
         ])->get();
 
         return $this->sendFormattedJsonResponse($user);

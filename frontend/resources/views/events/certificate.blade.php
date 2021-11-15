@@ -37,7 +37,7 @@
 @if(!empty($jsoncertificate['data']))
 <div class="container" align="center">
     <img width="1024" height="650" src="{{ asset('images/certificate.jpg') }}">
-    <div class="centered2">User email: {{ $jsoncertificate['data']['user_email'] }}</div>
+    <div class="centered2">Name: {{ $jsonuser['data'][0]['name'] }}</div>
     <div class="centered">Certificate: {{ $jsoncertificate['data']['certificate'] }}</div>
     <div class="centered3">Event: {{ $jsonevent['data'][0]['description'] }}</div>
 </div>
