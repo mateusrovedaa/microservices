@@ -46,4 +46,5 @@ $router->group(['prefix' => 'certificate'], function () use ($router) {
 });
 $router->group(['prefix' => 'users'], function () use ($router) {
     $router->get('/', ['uses' => 'UserController@index']);
+    $router->post('/single', ['uses' => 'UserController@getSingle']);
 });

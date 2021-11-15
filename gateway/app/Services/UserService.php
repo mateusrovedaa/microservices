@@ -22,4 +22,9 @@ class UserService
         return $this->request('GET', '/users');
     }
 
+    public function getSingle($data)
+    {
+        return $this->request('POST', '/user', $data);
+    }
+
 }

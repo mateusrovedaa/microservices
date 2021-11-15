@@ -163,9 +163,14 @@ public class JdlCheckin extends javax.swing.JDialog {
                         Mensagem.informacao("Checkin unrealized.", this);
                     }
                 } else {
-                    sync.saveUsers(tfdEmail.getText(), tfdEmail.getText(), 0);
-                    sync.saveInscriptions(1, 1, 0, "", tfdEmail.getText(), Integer.parseInt(tfdEvent.getText()), 0);
-                    Mensagem.informacao("User created and checkin successfully.", this);
+                    int choise = Mensagem.confirmacao("User doesn't exists, want to create?", this);
+                    if (choise == 0) {
+                        sync.saveUsers(tfdEmail.getText(), tfdEmail.getText(), 0);
+                        sync.saveInscriptions(1, 1, 0, "", tfdEmail.getText(), Integer.parseInt(tfdEvent.getText()), 0);
+                        Mensagem.informacao("User created and checkin successfully.", this);
+                    } else {
+                        Mensagem.informacao("Checkin unrealized.", this);
+                    }
                 }
             }
         } else {

@@ -65,4 +65,15 @@ class GatewayService
         $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
         return $this->request('POST', '/email/', $data, $headers);
     }
+
+    public function certificate($data)
+    {
+        $headers['Authorization'] = 'OAuth ' . Session::get( 'token');
+        return $this->request('POST', '/certificate/certificate', $data, $headers);
+    }
+
+    public function validateCertificate($id)
+    {
+        return $this->request('GET', "/certificate/validate/{$id}");
+    }
 }

@@ -71,4 +71,16 @@ class EventController extends Controller
         }
     }
 
+    public function certificate(Request $request)
+    {
+        try {
+            $this->gatewayService->certificate($request->all());
+            app(\App\Http\Controllers\EmailController::class)->send(Session::get('email'),'Certificate generated!','Certificate generated!');
+            return redirect()->route('list-inscriptions')->with('status', 'Certificate generated!');
+
+        } catch (Exception $e){
+            return redirect()->route('list-inscriptions')->withErrors('Fail to generate certificate');
+        }
+    }
+
 }

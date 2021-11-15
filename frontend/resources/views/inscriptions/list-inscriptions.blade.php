@@ -53,14 +53,27 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form method="POST" action="/cancelinscription">
-                                                @csrf
-                                                    <input type="hidden" name="user_email" value="{{Session::get('email')}}">
-                                                    <input type="hidden" name="event_id" value="{{ $event['id'] }}">
-                                                    <input type="hidden" name="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
-                                                    <button type="submit" class="btn btn-secondary">Cancel</button>
-                                            </form>
-                                            <a href="/certificate/{{ $inscription['id'] }}"><button class="btn btn-info">Certificate</button></a>
+                                            @if(! $inscription['checkin'])
+                                                <form method="POST" action="/cancelinscription">
+                                                    @csrf
+                                                        <input type="hidden" name="user_email" value="{{Session::get('email')}}">
+                                                        <input type="hidden" name="event_id" value="{{ $event['id'] }}">
+                                                        <input type="hidden" name="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
+                                                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                                                </form>
+                                            @endif
+                                            @if($inscription['checkin'])
+                                                @if($inscription['certificate'])
+                                                    <a href="/validate/{{ $inscription['certificate'] }}"><button class="btn btn-info">View certificate</button></a>
+                                                @else
+                                                <form method="POST" action="/certificate">
+                                                    @csrf
+                                                        <input type="hidden" name="user_email" value="{{Session::get('email')}}">
+                                                        <input type="hidden" name="event_id" value="{{ $event['id'] }}">
+                                                        <button type="submit" class="btn btn-info">Generate certificate</button>
+                                                </form>
+                                                @endif
+                                            @endif
                                         </td>
                                     @endif
                                 </tr>
